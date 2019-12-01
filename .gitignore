@@ -1,0 +1,11 @@
+.DS_Store
+**/.DS_Store
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/Migrations/
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###

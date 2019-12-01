@@ -1,0 +1,29 @@
+monolog:
+    handlers:
+        main:
+            type:         group
+            members:      [file, stderr]
+        # uncomment to get logging in your browser
+        # you may have to allow bigger header sizes in your Web server configuration
+        #firephp:
+        #    type: firephp
+        #    level: info
+        #chromephp:
+        #    type: chromephp
+        #    level: info
+        file:
+            #type:         rotating_file
+            type:         stream
+            path:         "%kernel.logs_dir%/%kernel.environment%.log"
+            level:        debug
+            channels:     ["!event"]
+            #max_files:    3
+        stderr: # gets caught by FPM process and forwarded to docker log deamon
+            type:         stream
+            path:         "php://stderr"
+            level:        debug
+            channels:     ["!event"]
+        console:
+            type: console
+            process_psr_3_messages: false
+            channels: ["!event", "!doctrine", "!console"]
