@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Manager;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use App\Repository\BooksRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -27,10 +27,10 @@ class ImportManager
      * @param ManagerRegistry $registry
      * @param LoggerInterface $logger
      */
-    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger, BooksRepository $booksRepository)
     {
         $this->logger = $logger;
-        $this->booksRepository = new BooksRepository($registry, $logger);
+        $this->booksRepository = $booksRepository;
     }
 
     /**

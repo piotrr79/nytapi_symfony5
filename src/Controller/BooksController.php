@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use App\Repository\BooksRepository;
 
@@ -22,11 +22,12 @@ class BooksController extends BaseController
      * BooksController constructor.
      * @param ManagerRegistry $registry
      * @param LoggerInterface $logger
+     * @param BooksRepository $booksRepository
      */
-    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger, BooksRepository $booksRepository)
     {
         $this->logger = $logger;
-        $this->booksRepository = new BooksRepository($registry, $logger);
+        $this->booksRepository = $booksRepository;
     }
 
     /**

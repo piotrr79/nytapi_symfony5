@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Orm\Query;
 

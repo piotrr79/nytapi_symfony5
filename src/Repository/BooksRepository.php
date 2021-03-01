@@ -5,7 +5,7 @@ namespace App\Repository;
 
 use App\Entity\Books;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use App\Service\PaginatorService;
 
@@ -26,12 +26,13 @@ class BooksRepository extends ServiceEntityRepository
      * BooksRepository constructor.
      * @param ManagerRegistry $registry
      * @param LoggerInterface $logger
+     * @param PaginatorService $paginatorService
      */
-     public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
+     public function __construct(ManagerRegistry $registry, LoggerInterface $logger, PaginatorService $paginatorService)
      {
          parent::__construct($registry, Books::class);
          $this->logger = $logger;
-         $this->paginatorService = new PaginatorService($registry);
+         $this->paginatorService = $paginatorService;
      }
 
     /**
